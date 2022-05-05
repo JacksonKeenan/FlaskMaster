@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>FlaskMaster</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+  <h1>Fl<sup>T</sup>askMaster</h1>
+  {% if tasks|length < 1 %}
+  <h2>No Current Tasks</h2>
+  {% else %}
+  <div class="task-table">
+    <div class="task-headers">
+      <span>Task</span>
+      <span>Added</span>
+      <span>Actions</span>
+    </div>
+    {% for task in tasks %}
+      <div class="task">
+        <span>{{ task.content }}</span>
+        <span>{{ task.created.date() }}</span>
+        <span>
+          <a href="/update/{{ task.id }}">Update</a>
+          <a href="/delete/{{ task.id }}">Remove</a>
+        </span>
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <form class="" action="/" method="post">
+    <textarea type="text" name="content" id="content"></textarea>
+    <input type="submit" value="Add Task">
+  </form>
+</div>
+{% endblock %}

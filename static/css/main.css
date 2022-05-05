@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  text-align: center;
+  background: #1D1451;
+  color: #CD2568;
+}
+
+a {
+  color: #FDD229;
+}
+
+.task-table {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+  border: 5px solid #CD2568;
+  margin-bottom: 2em;
+}
+
+.task-headers, .task {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.task-headers {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-bottom: 0.5em;
+  border-bottom: 5px solid #CD2568;
+}
+
+.task-headers span, .task {
+  padding: 1em;
+}
+
+.task {
+  font-size: 1.15em;
+  font-weight: bold;
+  padding: 1em 0;
+  border-bottom: 2px solid #CD2568;
+}
+
+.task:last-child {
+  border-bottom: none;
+}
+
+.task a {
+  display: block;
+}
+
+.task-headers span, .task span {
+  width: 33%
+}
+
+textarea {
+  display: block;
+  margin: 0 auto;
+  width: 800px;
+  height: 4em;
+  background: #2F2180;
+  border: 1px solid #CD2568;
+  color: #CD2568;
+  font-size: 1.25em;
+}
+
+input[type=submit] {
+  margin-top: 1em;
+  width: 400px;
+  color: #CD2568;
+  background: #2F2180;
+  font-size: 1.5em;
+  font-weight: bold;
+  border: 1px solid #CD2568;
+  text-transform: uppercase;
+}
