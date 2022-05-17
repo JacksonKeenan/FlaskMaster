@@ -2,9 +2,9 @@ from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-FlaskMaster = Flask(__name__)
-FlaskMaster.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///FlaskMasterData.db'
-db = SQLAlchemy(FlaskMaster)
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///appData.db'
+db = SQLAlchemy(app)
 
 class TaskList(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -14,7 +14,7 @@ class TaskList(db.Model):
     def __repr__(self):
         return '<Task %r>' % self.id
 
-@FlaskMaster.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         content = request.form['content']
@@ -30,7 +30,7 @@ def index():
         tasks = TaskList.query.order_by(TaskList.created).all()
         return render_template('index.html', tasks=tasks)
 
-@FlaskMaster.route('/delete/<int:id>')
+@app.route('/delete/<int:id>')
 def delete(id):
     task = TaskList.query.get_or_404(id)
 
@@ -41,7 +41,7 @@ def delete(id):
     except:
         return 'Could Not Delete Task'
 
-@FlaskMaster.route('/update/<int:id>', methods=['GET', 'POST'])
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
 def update(id):
     task = TaskList.query.get_or_404(id)
     if request.method == 'POST':
@@ -57,4 +57,4 @@ def update(id):
 
 
 if __name__ == "__main__":
-    FlaskMaster.run(debug=True)
+    app.run(debug=True)
